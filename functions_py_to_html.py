@@ -1,7 +1,27 @@
+"""
+Author: T. A. Rintoul
+Last Modified: 21/05/2024
+Known Bugs:
+- markdown_to_html: cannot handle nested bullet pointed lists
+"""
+
 import re
 import pandas as pd
 
 def markdown_to_html(markdown_content):
+    """
+    Convert Markdown text to HTML code converting heading, bold/italic, bullet point and link notation
+    into HTML format
+
+    INPUTS:
+        - markdown_content
+            - type: str
+            - desc: a string containing text formatted as in Markdown
+    OUTPUTS:
+        - html_content
+            - type: str
+            - desc: a string containing HTML formatted text
+    """
     # Convert headings
     markdown_content = re.sub(r'^# (.*)$', r'<h1>\1</h1>', markdown_content, flags=re.MULTILINE)
     markdown_content = re.sub(r'^## (.*)$', r'<h2>\1</h2>', markdown_content, flags=re.MULTILINE)
@@ -31,11 +51,37 @@ def markdown_to_html(markdown_content):
     return html_content
 
 def preprocess_inline_maths(markdown_content):
-    # Replace single $ with \( ... \)
+    """
+    Preprocess Markdown text for inline maths formatted in standard Latex style of ${maths here}$
+    to the MathJax format of \({maths here}\).
+
+    INPUTS:
+        - markdown_content
+            - type: str
+            - desc: a string containing text formatted as in Markdown
+    OUTPUTS:
+        - markdown_content
+            - type: str
+            - desc: a string containint Markdown text with maths formatting
+                    converted from ${maths here}$ to \({maths here}\).
+    """
     markdown_content = re.sub(r'(?<!\\)\$(.*?)(?<!\\)\$', r'\\(\1\\)', markdown_content)
+
     return markdown_content
 
 def output_text_to_html(markdown_content, output_filepath='output.html'):
+    """
+    Function takes in Markdown (.md) text and converts it to html text.
+    INPUTS:
+        - markdown_content
+            - type: str
+            - desc: a string containing text formatted as in Markdown
+        - output_filepath
+            - type: str
+            - desc: Relative or Absolute path of the output html file
+    OUTPUTS:
+        - appends formatted html text to output_filepath
+    """
 
     markdown_content = preprocess_inline_maths(markdown_content=markdown_content)
 
@@ -47,13 +93,16 @@ def output_text_to_html(markdown_content, output_filepath='output.html'):
 
 def style_html_table(html_table, output_filepath='output.html'):
     """
-    Apply CSS styling to an HTML table.
+    Function formats table for output file and appends to that file.
 
-    Args:
-        html_table (str): HTML table string.
+    INPUTS:
+        - html_table
+            - type: str
+            - desc: HTML table
 
-    Returns:
-        str: Styled HTML table string.
+    OUTPUTS:
+        - Writes to file
+
     """
     styled_html_table = f"""
         {html_table}<br>
@@ -64,9 +113,23 @@ def style_html_table(html_table, output_filepath='output.html'):
         f.write(styled_html_table)
         f.close()
 
-    return styled_html_table
 
 def html_report_head(output_filepath='output.html', font_family="Arial, sans-serif"):
+    """
+    Creates document at filepath specified and writes code head supporting MathJax LaTeX,
+    defining font families and styling tables.
+
+    INPUTS:
+        - output_filepath:
+            - type: str
+            - desc: A relative or absolute filepath for the output file
+        - font_family:
+            - type: str
+            - desc: String specifying the font family to use in this HTML file.
+    OUTPUTS:
+        - Writes HTML header to file specified by output_filepath
+    """
+
     html_header=f"""
     <!DOCTYPE html>
     <html>
@@ -104,6 +167,16 @@ def html_report_head(output_filepath='output.html', font_family="Arial, sans-ser
         f.close()
 
 def html_report_foot(output_filepath='output.html'):
+    """
+    Appends end to document at filepath specified.
+
+    INPUTS:
+        - output_filepath:
+            - type: str
+            - desc: A relative or absolute filepath for the output file
+    OUTPUTS:
+        - Writes HTML footer to file specified by output_filepath
+    """
     html_footer=f"""
     </body>
     </html>
@@ -115,6 +188,31 @@ def html_report_foot(output_filepath='output.html'):
 
 def figure_to_html(figure_filepath, fig_heading='<br>', fig_caption='None', output_filepath='output.html',
                    width=600, height=500):
+    """
+    Embeds figure in HTML file specified.
+
+    INPUTS:
+        - figure_filepath:
+            - type: str
+            - desc: A relative or absolute filepath for the figure to be embedded
+        - fig_heading
+            - type: str
+            - desc: Text of heading to be displayed above figure
+        - fig_caption:
+            - type: str
+            - desc: Text of caption to be displayed below figure
+        - output_filepath:
+            - type: str
+            - desc: A relative or absolute filepath for the output file
+        - width:
+            - type: int
+            - desc: Width of the figure in pixels
+        - height:
+            - type: int
+            - desc: Height of the figure in pixels
+    OUTPUTS:
+        - Writes HTML figure to file specified by output_filepath
+    """
     fig_caption = preprocess_inline_maths(fig_caption)
 
     figure_html=f"""
