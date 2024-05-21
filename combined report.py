@@ -3,8 +3,11 @@ Author: T. A. Rintoul
 Last Modified: 21/05/2024
 Known Bugs:
 - None
-"""
 
+DESCRIPTION
+An example script showing how to create a basic HTML report including Markdown text,
+a Pandas Dataframe (converted to HTML table), and a Matplotlib plot (embedded in HTML).
+"""
 
 import re
 import pandas as pd
@@ -22,12 +25,10 @@ The galaxy mass is $5 \times 10^{13}$ M$_\odot$.
 output_text_to_html(markdown_content=markdown_content, output_filepath='combined.html')
 
 # creating the dataframe
-dict = {"Name": ['Anurag', 'Manjeet', 'Shubham',
-                            'Saurabh', 'Ujjawal'],
-                   "Address": ['Patna', 'Delhi', 'Coimbatore',
-                               'Greater noida', 'Patna'],
-                   "ID": [20123, 20124, 20145, 20146, 20147],
-                   "Sell": [140000, 300000, 600000, 200000, 600000]}
+dict = {"Name": ['Amy', 'Mike', 'Shona', 'Sam', 'Victor'],
+        "Address": ['England', 'Wales', 'Scotland', 'Northern Ireland', 'Isle of Man'],
+        "ID": [15640, 51562, 21561, 48106, 40854],
+        "Score": [50, 90, 54, 75, 84]}
 df = pd.DataFrame(dict)
 
 html_table = df.to_html(index=False)
