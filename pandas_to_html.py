@@ -17,7 +17,7 @@ df = pd.DataFrame(dict)
 html_table = df.to_html(index=False)
 
 
-styled_html_table = style_html_table(html_table, output_filepath='table_output.html')
+style_html_table(html_table, output_filepath='table_output.html')
 
 
 

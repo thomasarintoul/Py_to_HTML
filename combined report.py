@@ -1,3 +1,11 @@
+"""
+Author: T. A. Rintoul
+Last Modified: 21/05/2024
+Known Bugs:
+- None
+"""
+
+
 import re
 import pandas as pd
 from IPython.display import display, HTML
@@ -25,7 +33,7 @@ df = pd.DataFrame(dict)
 html_table = df.to_html(index=False)
 
 
-styled_html_table = style_html_table(html_table, output_filepath='combined.html')
+style_html_table(html_table, output_filepath='combined.html')
 
 figure_to_html('plot.svg',
                output_filepath='combined.html')
