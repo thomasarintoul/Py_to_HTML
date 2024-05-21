@@ -13,7 +13,7 @@ from IPython.display import display, HTML
 
 from functions_py_to_html import *
 
-html_report_head(output_filepath='table_output.html', font_family="Arial, sans-serif")
+html_report_head(output_filepath='./outputs/table_output.html', font_family="Arial, sans-serif")
 
 # creating the dataframe
 dict = {"Name": ['Amy', 'Mike', 'Shona', 'Sam', 'Victor'],
@@ -25,10 +25,10 @@ df = pd.DataFrame(dict)
 html_table = df.to_html(index=False)
 
 
-style_html_table(html_table, output_filepath='table_output.html')
+style_html_table(html_table, output_filepath='./outputs/table_output.html')
 
 
 
 print("Styled HTML table has been saved to 'table_output.html'")
 
-html_report_foot(output_filepath='table_output.html')
+html_report_foot(output_filepath='./outputs/table_output.html')

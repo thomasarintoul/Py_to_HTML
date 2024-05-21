@@ -69,7 +69,7 @@ def preprocess_inline_maths(markdown_content):
 
     return markdown_content
 
-def output_text_to_html(markdown_content, output_filepath='output.html'):
+def output_text_to_html(markdown_content, output_filepath='./outputs/output.html'):
     """
     Function takes in Markdown (.md) text and converts it to html text.
     INPUTS:
@@ -91,7 +91,7 @@ def output_text_to_html(markdown_content, output_filepath='output.html'):
         f.write(html_content)
         f.close()
 
-def style_html_table(html_table, output_filepath='output.html'):
+def style_html_table(html_table, output_filepath='./outputs/output.html'):
     """
     Function formats table for output file and appends to that file.
 
@@ -114,7 +114,7 @@ def style_html_table(html_table, output_filepath='output.html'):
         f.close()
 
 
-def html_report_head(output_filepath='output.html', font_family="Arial, sans-serif"):
+def html_report_head(output_filepath='./outputs/output.html', font_family="Arial, sans-serif"):
     """
     Creates document at filepath specified and writes code head supporting MathJax LaTeX,
     defining font families and styling tables.
@@ -166,7 +166,7 @@ def html_report_head(output_filepath='output.html', font_family="Arial, sans-ser
         f.write(html_header)
         f.close()
 
-def html_report_foot(output_filepath='output.html'):
+def html_report_foot(output_filepath='./outputs/output.html'):
     """
     Appends end to document at filepath specified.
 
@@ -186,7 +186,7 @@ def html_report_foot(output_filepath='output.html'):
         f.write(html_footer)
         f.close()
 
-def figure_to_html(figure_filepath, fig_heading='<br>', fig_caption='None', output_filepath='output.html',
+def figure_to_html(figure_filepath, fig_heading='<br>', fig_caption='None', output_filepath='./outputs/output.html',
                    width=600, height=500):
     """
     Embeds figure in HTML file specified.

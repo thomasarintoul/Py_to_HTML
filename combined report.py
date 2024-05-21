@@ -16,13 +16,13 @@ from weasyprint import HTML
 
 from functions_py_to_html import *
 
-html_report_head(output_filepath='combined.html', font_family="Arial, sans-serif")
+html_report_head(output_filepath='./outputs/combined.html', font_family="Arial, sans-serif")
 
 markdown_content = r"""
 The galaxy mass is $5 \times 10^{13}$ M$_\odot$.
 """
 
-output_text_to_html(markdown_content=markdown_content, output_filepath='combined.html')
+output_text_to_html(markdown_content=markdown_content, output_filepath='./outputs/combined.html')
 
 # creating the dataframe
 dict = {"Name": ['Amy', 'Mike', 'Shona', 'Sam', 'Victor'],
@@ -34,14 +34,14 @@ df = pd.DataFrame(dict)
 html_table = df.to_html(index=False)
 
 
-style_html_table(html_table, output_filepath='combined.html')
+style_html_table(html_table, output_filepath='./outputs/combined.html')
 
 figure_to_html('plot.svg',
                output_filepath='combined.html')
 
-output_text_to_html(markdown_content=markdown_content, output_filepath='combined.html')
+output_text_to_html(markdown_content=markdown_content, output_filepath='./outputs/combined.html')
 
-html_report_foot(output_filepath='combined.html')
+html_report_foot(output_filepath='./outputs/combined.html')
 
 # Convert HTML to PDF
-HTML('combined.html').write_pdf('combined.pdf')
+HTML('./outputs/combined.html').write_pdf('./outputs/combined.pdf')

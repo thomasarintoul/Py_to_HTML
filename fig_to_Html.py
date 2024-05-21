@@ -27,7 +27,7 @@ ax.set_title('Straight Line Plot')
 ax.legend()
 
 # Save the plot as an SVG file
-fig.savefig('plot.svg')
+fig.savefig('./outputs/plot.svg')
 
 # Specify figure caption
 fig_caption = r"""
@@ -37,15 +37,15 @@ fig_caption = preprocess_inline_maths(fig_caption)
 
 
 # Export the figure to a .html file
-html_report_head(output_filepath='plot.html', font_family="Arial, sans-serif")
+html_report_head(output_filepath='./outputs/plot.html', font_family="Arial, sans-serif")
 
 
-figure_to_html(figure_filepath='plot.svg',
+figure_to_html(figure_filepath='./outputs/plot.svg',
                fig_heading='Straight Line plot from Matplotlib',
                fig_caption=fig_caption,
-               output_filepath='plot.html',
+               output_filepath='./outputs/plot.html',
                width=600,
                height=500)
 
-html_report_foot(output_filepath='plot.html')
+html_report_foot(output_filepath='./outputs/plot.html')
 
